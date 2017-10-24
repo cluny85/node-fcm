@@ -57,3 +57,16 @@ typings/
 # dotenv environment variables file
 .env
 
+# MacOs
+.DS_Store
+
+# Firebase cert
+config/firebase/
+
+# Old files
+service/fcm/index-old.js
+
+# Dockerfiles
+docker-compose.yml
+Dockerfile
+docker/

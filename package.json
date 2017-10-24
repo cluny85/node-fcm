@@ -1,0 +1,22 @@
+{
+    "name": "node-fcm",
+    "version": "0.1.0",
+    "author": "Oscar Mesa",
+    "description": "Firebase fcm easy service",
+    "main": "api/server.js",
+    "scripts": {
+        "dev": "clear && export NODE_ENV=development && npm install && ./node_modules/.bin/nodemon",
+        "start": "clear && export NODE_ENV=production && npm install && ./node_modules/.bin/nodemon",
+        "test": "npm install && mocha ./service/fcm/test/push.unit.test.js"
+    },
+    "dependencies": {
+        "firebase-admin": "latest"
+    },
+    "devDependencies": {
+        "chai": "^3.3.0",
+        "chai-http": "^3.0.0",
+        "mocha": "^2.3.3",
+        "proxyquire": "^1.8.0",
+        "sinon": "^3.2.1"
+    }
+}
