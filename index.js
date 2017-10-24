@@ -1,6 +1,9 @@
-var fcm       = require("../../lib/firebase").push,
-    pushTypes = require("./push.types");
-const { EVENTS, FCM_RESPONSES } = require("./push.const");
+var fcm       = require("./lib/firebase"),
+    push      = fcm.push,
+    pushTemplates = "./pushTemplates/",
+    pushTypes = require(pushTemplates),
+    utils     = require("./push/push.utils");
+const { EVENTS, FCM_RESPONSES } = require("./push/push.const");
 
 var listeners = {
     onUninstalled     : [],
@@ -11,18 +14,34 @@ var listeners = {
 }
 
 module.exports = {
+    init  : init,
     events: EVENTS,
     on    : on,
     remove: removeListener,
-    send  : send
+    send  : send,
+    utils : utils
 }
+/**
+ * Optional firebase initialization. Use it to change the default configuration.
+ * @param {*} fcmData Object with fcm params: cert & url
+ * @param {*} pathTemplates Optional. Change the default push templates.
+ */
+function init(fcmData,pathTemplates){
+    if(!fcmData) throw new Error("Must provide an object with the firebase initialization.")
+    fcm.init(fcmData);
+    if(pathTemplates && typeof pathTemplates === 'string'){
+        pushTemplates = pathTemplates;
+        pushTypes     = require(pushTemplates);
+    }
+}
+
 function notify(event,data){
     if(!listeners[event]&&listeners[event].length===0) return;
     for (var i = 0; i < listeners[event].length; i++)
         listeners[event][i](data);
 }
 /**
- * 
+ * Listener setter
  * @param {string} type const event type 
  * @param {function} cb function callback
  */
@@ -31,6 +50,11 @@ function on(type,cb){
     if(!typeof cb === 'function') throw new Error("No function callback passed to subscribe on the listener.");
     listeners[type].push(cb);
 }
+/**
+ * Remove listener
+ * @param {string} type const event type 
+ * @param {function} cb function callback
+ */
 function removeListener(type,cb){
     if(!listeners[type])          throw new Error("Event "+type+" unknown.");
     if(!typeof cb === 'function') throw new Error("No function callback passed to unsubscribe on the listener.");
@@ -48,20 +72,21 @@ async function send(tokens, type, data){
         if(!tokens)          throw new Error("Tokens not defined");
         if(!pushTypes[type]) throw new Error("Type of notification "+type+" not defined.");
         if(typeof tokens=="string") tokens=[tokens];
-        // About while loop vs funtional programing => while loop so much faster
-        // https://stackoverflow.com/a/43596323/7043613
+
         var index = 0,
         result = {tokens: 0, success: 0, failures: 0};
         const incrementIndex = (x,y)=>(x+999<y-1) ? x+999  : y-1,
               slice          = (x,y)=>(x+999<y-1) ? x+1000 : y,
               so = ["android","ios"];
+        // About while loop vs funtional programing => while loop so much faster
+        // https://stackoverflow.com/a/43596323/7043613
         do {
             let tokensByLoop = tokens.slice(index,slice(index,tokens.length));
             let tokensToSend = divideTokensByPlatform(tokensByLoop);
-            let payloads     = require("./pushTemplates/"+pushTypes[type])(data);
+            let payloads     = require(pushTemplates+pushTypes[type])(data);
             for (var i = 0; i < so.length; i++) {
                 if(tokensToSend[so[i]]){
-                    let response = await fcm.sendToDevice(tokensToSend[so[i]], 
+                    let response = await push.sendToDevice(tokensToSend[so[i]], 
                         payloads[so[i]].payload, payloads[so[i]].options);
                     transformResponse(response,result,tokensToSend[so[i]]);
                 }

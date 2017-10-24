@@ -64,7 +64,7 @@ typings/
 config/firebase/
 
 # Old files
-service/fcm/index-old.js
+index-old.js
 
 # Dockerfiles
 docker-compose.yml

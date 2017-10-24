@@ -1,6 +1,9 @@
-module.exports = (payload)=>{        
+const actions = require("../push/push.actions");
+
+module.exports = (payload)=>{
     if(!payload.user&&!payload.user.name&&!payload.text)
-        return new Error("Bad construction of payload for chat_message notification: "+
+        return new Error(`Bad construction of payload 
+            for chat_message notification: `+
             JSON.stringify(payload));
     let result = {android:{},ios:{}};
     result.android = result.ios = {
@@ -13,7 +16,7 @@ module.exports = (payload)=>{
             notification: {
                 title: payload.user.name || "lingbe user",
                 body: payload.text || "default message",
-                click_action: require("../push.actions").OPEN,
+                click_action: actions.OPEN,
                 icon: 'icon', // android only
                 sound: "default", // android default only, iOS: Sound files can be in the main bundle of the client app or in the Library/Sounds folder of the app's data container
                 tag: ""+Math.floor((Math.random() * 999) + 1), // android only

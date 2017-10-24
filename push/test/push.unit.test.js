@@ -1,6 +1,6 @@
 var expect = require('chai').expect,
-    push   = require('../index'),
-    pushType   = require('../push.types'),
+    push   = require('../../index'),
+    pushType   = require('../../pushTemplates'),
     mock = require('./fcmMock.json');
     // mock = require('./tokensMock.json');
 
