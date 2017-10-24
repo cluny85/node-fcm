@@ -1,6 +1,6 @@
 {
-    "name": "node-fcm",
-    "version": "0.1.0",
+    "name": "node-fcm-hero",
+    "version": "0.0.1",
     "author": "Oscar Mesa",
     "description": "Firebase fcm easy service",
     "main": "index.js",
