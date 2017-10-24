@@ -19,7 +19,8 @@ module.exports = {
     on    : on,
     remove: removeListener,
     send  : send,
-    utils : utils
+    utils : utils,
+    templates: pushTypes
 }
 /**
  * Optional firebase initialization. Use it to change the default configuration.
