@@ -17,16 +17,16 @@
       "ios"
     ],
     "scripts": {
-        "test": "mocha ./push/test/push.unit.test.js"
+        "test": "mocha ./test/push.unit.test.js"
     },
     "dependencies": {
         "firebase-admin": "latest"
     },
     "devDependencies": {
-        "chai": "^3.3.0",
+        "chai": "latest",
         "chai-http": "^3.0.0",
-        "mocha": "^2.3.3",
+        "mocha": "latest",
         "proxyquire": "^1.8.0",
-        "sinon": "^3.2.1"
+        "sinon": "latest"
     }
 }
