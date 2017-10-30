@@ -1,4 +1,5 @@
 var expect   = require('chai').expect,
+    config   = require("./mock.env").firebase,
     push     = require('../index'),
     pushType = require('../pushTemplates'),
     mock     = require('./fcmMock.json');
@@ -7,6 +8,15 @@ var expect   = require('chai').expect,
 
 describe('[Unit] Push notifications with Firebase', function(){
 
+  describe('.init', function(){
+    it('must init firebase', function(done){
+      expect(config).to.exist;
+      var fcm = push.init(config);
+      expect(fcm).to.exist;
+      done();
+    });
+  });
+  
   describe('.send CANCEL_CALL', function(){
     it('must return a response from firebase', function(done){
       expect(mock.token).to.exist;

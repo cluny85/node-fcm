@@ -1,5 +1,4 @@
-var fcm       = require("./lib/firebase"),
-    push      = fcm.push,
+var push,
     pushTemplates = "./pushTemplates/",
     pushTypes = require(pushTemplates),
     utils     = require("./push/push.utils");
@@ -12,8 +11,7 @@ var listeners = {
     onError           : [],
     onSuccess         : []
 }
-
-module.exports = {
+const fileDescriptor = {
     init  : init,
     events: EVENTS,
     on    : on,
@@ -22,6 +20,8 @@ module.exports = {
     utils : utils,
     templates: pushTypes
 }
+module.exports = fileDescriptor;
+
 /**
  * Optional firebase initialization. Use it to change the default configuration.
  * @param {*} fcmData Object with fcm params: cert & url
@@ -29,11 +29,13 @@ module.exports = {
  */
 function init(fcmData,pathTemplates){
     if(!fcmData) throw new Error("Must provide an object with the firebase initialization.")
-    fcm.init(fcmData);
+    push = require("./lib/firebase")(fcmData);
+
     if(pathTemplates && typeof pathTemplates === 'string'){
         pushTemplates = pathTemplates;
         pushTypes     = require(pushTemplates);
     }
+    return fileDescriptor;
 }
 
 function notify(event,data){
@@ -70,6 +72,7 @@ function removeListener(type,cb){
  */
 async function send(tokens, type, data){
     try{
+        if(!push)            throw new Error("FCM must be initialized");
         if(!tokens)          throw new Error("Tokens not defined");
         if(!pushTypes[type]) throw new Error("Type of notification "+type+" not defined.");
         if(typeof tokens=="string") tokens=[tokens];

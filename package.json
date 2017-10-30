@@ -4,6 +4,10 @@
     "author": "Oscar Mesa",
     "description": "Firebase fcm easy service",
     "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/cluny85/node-fcm-hero.git"
+    },
     "keywords": [
       "fcm",
       "gcm",
@@ -28,5 +32,6 @@
         "mocha": "latest",
         "proxyquire": "^1.8.0",
         "sinon": "latest"
-    }
+    },
+    "license": "MIT"
 }
