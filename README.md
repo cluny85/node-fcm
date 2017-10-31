@@ -10,7 +10,7 @@ To use this lib, you have to import:
 ```javascript
 var fcm    = require('node-fcm-hero'),
     config = require("./your.config.file").firebase,
-    push   = require('../index').init(config);
+    push   = require('../index')(config);
 ```
 
 The config file must have this format:
@@ -47,7 +47,11 @@ You can override the default types and templates for your own, passing path thro
 var fcm    = require('node-fcm-hero'),
     config = require("./your.config.file").firebase,
     templatesPath = "your.templates.path",
-    push   = require('../index').init(config,templatesPath);
+    push   = require('../index')(config,templatesPath);
 ```
 
-You can find examples of the templates format under the folder 'pushTemplates'.
+You can find examples of the templates format under the folder 'exampleTemplates'.
+
+Powered by:
+![alt text](http://www.lingbe.com/wp-content/uploads/2015/10/logo-fondo-trans-verde.png "Lingbe")
+[Lingbe App](http://www.lingbe.com/)

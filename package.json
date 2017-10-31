@@ -1,6 +1,6 @@
 {
     "name": "node-fcm-hero",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Oscar Mesa",
     "description": "Firebase fcm easy service",
     "main": "index.js",
@@ -21,7 +21,7 @@
       "ios"
     ],
     "scripts": {
-        "test": "mocha ./test/push.unit.test.js"
+        "test": "mocha ./test/push.e2e.test.js"
     },
     "dependencies": {
         "firebase-admin": "latest"
