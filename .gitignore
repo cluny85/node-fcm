@@ -60,11 +60,8 @@ typings/
 # MacOs
 .DS_Store
 
-# Firebase cert
-config/firebase/
-
-# Old files
-index-old.js
+# Firebase config cert
+config/
 
 # Dockerfiles
 docker-compose.yml
