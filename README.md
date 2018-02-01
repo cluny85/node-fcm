@@ -4,9 +4,15 @@
 # node-fcm-hero
 FCM interface with super powers. Send push notifications to android/ios in a simple way
 
-## Installation
+## Get Started
 
-## How it works
+### Install
+
+```
+npm install --save node-fcm-hero
+```
+
+## Usage
 
 To use this lib, you have to import:
 
@@ -20,9 +26,9 @@ The config file must have this format:
 
 ```json
 {
-  firebase: {
-    cert: "/route/to/firebase-adminsdk.json",
-    url : "https://your-project.firebaseio.com"
+  "firebase": {
+    "cert": "/route/to/firebase-adminsdk.json",
+    "url" : "https://your-project.firebaseio.com"
   }
 }
 ```
@@ -65,8 +71,8 @@ If the event type don't macht with any template, the node-fcm-hero will return a
 
 ```json
 {
-  success: 0,
-  error  : 'No template found for this event'
+  "success": 0,
+  "error"  : "No template found for this event"
 }
 ```
 
@@ -76,10 +82,10 @@ You can override the default types and templates for your own, setting in the fi
 
 ```json
 {
-  firebase: {
-    cert: "/route/to/firebase-adminsdk.json",
-    url : "https://your-project.firebaseio.com",
-    templatesPath: "/path/to/templates"
+  "firebase": {
+    "cert": "/route/to/firebase-adminsdk.json",
+    "url" : "https://your-project.firebaseio.com",
+    "templatesPath": "/path/to/templates"
   }
 }
 ```
@@ -119,11 +125,15 @@ If any error happends, the node-fcm-hero will return a json object with the succ
 
 ## Test
 
-To make the integration test work, you need to provide your own instance of firebase admin messaging or set your configuration file with the route to your **firebase-adminsdk.json**. Also you need you provide at least one working firebase token and one uninstalled to cover all the best scenarios.
+To make the integration test work, you need to provide your own instance of firebase admin messaging or set your configuration file with the route to your **firebase-adminsdk.json**. Also you need to you provide at least one working firebase token and one uninstalled to cover all the best scenarios.
 After that, delete the .skip of the nodeFcmHero.e2e.test.js
 
 Sorry for this, but i don't want to see how my phone 💥💥💥 
 
-Powered by:
-<br><img src="http://www.lingbe.com/wp-content/uploads/2015/10/logo-fondo-trans-verde.png" width="25%" /><br>
-[Lingbe App](http://www.lingbe.com/)
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/cluny85/node-fcm-hero/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
