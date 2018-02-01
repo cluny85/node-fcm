@@ -6,7 +6,7 @@ const mock     = require('./fcmMock.json');
 let push;
 // mock tokens can make return fail if they are not active in the app
 
-describe('[e2e] Push notifications with Firebase', () => {
+describe.skip('[e2e] Push notifications with Firebase', () => {
   before(() => {
     // must check if firebase config file has been provided
     try {
@@ -43,7 +43,7 @@ describe('[e2e] Push notifications with Firebase', () => {
     });
   });
 
-  describe.skip('.send CHAT_MESSAGE', () => {
+  describe('.send CHAT_MESSAGE', () => {
     it('must return a response from firebase', (done) => {
       const eventMock = {
         tokens : mock.token,
@@ -64,7 +64,7 @@ describe('[e2e] Push notifications with Firebase', () => {
     });
   });
 
-  describe.skip('.send uninstalled token', () => {
+  describe('.send uninstalled token', () => {
     it('must return a response from firebase and capture the event through the listener', (done) => {
       // this.timeout(10000);
       const eventMock = {

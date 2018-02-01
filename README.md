@@ -117,6 +117,12 @@ Will return every single token marked as app uninstalled after the called send f
 
 If any error happends, the node-fcm-hero will return a json object with the success field equal to 0. Also, it will notify to the on error listeners.
 
+## Test
+
+To make the integration test work, you need to provide your own instance of firebase admin messaging or set your configuration file with the route to your **firebase-adminsdk.json**. Also you need you provide at least one working firebase token and one uninstalled to cover all the best scenarios.
+After that, delete the .skip of the nodeFcmHero.e2e.test.js
+
+Sorry for this, but i don't want to see how my phone 💥💥💥 
 
 Powered by:
 <br><img src="http://www.lingbe.com/wp-content/uploads/2015/10/logo-fondo-trans-verde.png" width="25%" /><br>
