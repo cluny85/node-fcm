@@ -67,3 +67,5 @@ config/
 docker-compose.yml
 Dockerfile
 docker/
+
+package-lock\.json
